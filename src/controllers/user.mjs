@@ -20,7 +20,6 @@ export default class UserController {
             _id: Utils.generateUniqId(),
             name: req.body.name,
             email: req.body.email,
-            phone: req.body.phone,
             password: hash
           });
 

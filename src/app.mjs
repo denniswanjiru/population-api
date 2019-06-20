@@ -6,8 +6,7 @@ import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from './swagger.json';
-import MessagesRouter from './routes/messages';
-import ContactsRouter from './routes/contacts';
+import LocationsRouter from './routes/locations';
 import ErrorHandler from './middlewares/error';
 import UserRouter from './routes/user';
 import UtilMiddleware from './middlewares/utilMiddlewares.mjs';
@@ -25,15 +24,9 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Resources
 app.use(
-  '/api/v1/messages',
+  '/api/v1/locations',
   UtilMiddleware.authenticate,
-  MessagesRouter
-);
-
-app.use(
-  '/api/v1/contacts',
-  UtilMiddleware.authenticate,
-  ContactsRouter
+  LocationsRouter
 );
 
 app.use('/api/v1/user', UserRouter);

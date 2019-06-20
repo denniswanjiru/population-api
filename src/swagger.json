@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "SMS MANAGEMENT API",
+    "description": "POPULATION MANAGEMENT API",
     "version": "1.0.0",
-    "title": "SMS Management API",
+    "title": "Population Management API",
     "contact": {
       "email": "denniswanjiru71@gmail.com"
     },
@@ -20,12 +20,8 @@
       "description": "Users Management"
     },
     {
-      "name": "Messages",
-      "description": "Messages Management"
-    },
-    {
-      "name": "Contacts",
-      "description": "Contacts Management"
+      "name": "Location",
+      "description": "Location Management"
     }
   ],
   "schemes": [
@@ -103,14 +99,14 @@
         }
       }
     },
-    "/messages": {
+    "/locations": {
       "post": {
         "tags": [
-          "Messages"
+          "Location"
         ],
-        "summary": "Send new Message",
-        "description": "Add new sms to the DB",
-        "operationId": "sendNewMessage",
+        "summary": "Create new Location",
+        "description": "Add new location to the DB",
+        "operationId": "createLocation",
         "consumes": [
           "application/json"
         ],
@@ -135,16 +131,16 @@
           {
             "in": "body",
             "name": "body",
-            "description": "New SMS Object",
+            "description": "New Location Object",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SMS"
+              "$ref": "#/definitions/Location"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Message was sent successfully"
+            "description": "Location was created successfully"
           },
           "400": {
             "description": "You must be logged in to perform this action"
@@ -153,10 +149,10 @@
       },
       "get": {
         "tags": [
-          "Messages"
+          "Location"
         ],
-        "summary": "Get All Messages",
-        "description": "Get all messages regardless of the sender",
+        "summary": "Get All Locations",
+        "description": "Get all location",
         "operationId": "getAll",
         "produces": [
           "application/json"
@@ -176,19 +172,19 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/SMS"
+                "$ref": "#/definitions/Location"
               }
             }
           }
         }
       }
     },
-    "/messages/:id": {
+    "/locations/:id": {
       "get": {
         "tags": [
-          "Messages"
+          "Location"
         ],
-        "summary": "Get Single Message",
+        "summary": "Get Single Location",
         "description": "",
         "operationId": "getOne",
         "produces": [
@@ -205,7 +201,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "id of the message to retrieve ",
+            "description": "Id of the location to retrieve ",
             "required": true,
             "type": "integer"
           }
@@ -214,24 +210,24 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/SMS"
+              "$ref": "#/definitions/Location"
             }
           },
           "400": {
             "description": "Invalid id supplied"
           },
           "404": {
-            "description": "Message not found"
+            "description": "Location not found"
           }
         }
       },
       "patch": {
         "tags": [
-          "Messages"
+          "Location"
         ],
-        "summary": "Update Message",
-        "description": "Update a message",
-        "operationId": "updateMessage",
+        "summary": "Update Location",
+        "description": "Update a Location",
+        "operationId": "updateLocation",
         "produces": [
           "application/json"
         ],
@@ -246,7 +242,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ID of the message to be updated",
+            "description": "ID of the Location to be updated",
             "required": true,
             "type": "integer"
           }
@@ -256,17 +252,17 @@
             "description": "operation successful"
           },
           "404": {
-            "description": "Message was not found"
+            "description": "Location was not found"
           }
         }
       },
       "delete": {
         "tags": [
-          "Messages"
+          "Location"
         ],
-        "summary": "Delete Message",
-        "description": "Delete Single Message",
-        "operationId": "deleteMessage",
+        "summary": "Delete Location",
+        "description": "Delete Single Location",
+        "operationId": "deleteLocation",
         "produces": [
           "application/json"
         ],
@@ -281,193 +277,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ID of the message to be deleted",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "operation successful"
-          },
-          "404": {
-            "description": "Invalid id supplied"
-          }
-        }
-      }
-    },
-    "/contacts": {
-      "post": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Add new Contact",
-        "description": "",
-        "operationId": "insertContact",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-           {
-            "name": "authorization",
-            "in": "header",
-            "description": "An authorization token",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "New CONTACT Object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Contact"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Contact Created"
-          },
-          "400": {
-            "description": "Invalid input"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Get All Contacts",
-        "description": "Get all contacts in the system",
-        "operationId": "getContacts",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "An authorization token",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Contact"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/contacts/:id": {
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Get single Contact",
-        "description": "",
-        "operationId": "getSingleContact",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-           {
-            "name": "authorization",
-            "in": "header",
-            "description": "An authorization token",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "id of the contact to retrieve ",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Contact"
-            }
-          },
-          "400": {
-            "description": "Invalid id supplied"
-          },
-          "404": {
-            "description": "Contact not found"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Update Contact",
-        "description": "Update Single Contact",
-        "operationId": "updateContact",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-           {
-            "name": "authorization",
-            "in": "header",
-            "description": "An authorization token",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the contadct to be deleted",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "operation successful"
-          },
-          "404": {
-            "description": "Invalid id supplied"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Delete Contact",
-        "description": "Delete Single Contact with all messages related to it",
-        "operationId": "deleteContact",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-           {
-            "name": "authorization",
-            "in": "header",
-            "description": "An authorization token",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the contadct to be deleted",
+            "description": "ID of the Location to be deleted",
             "required": true,
             "type": "integer"
           }
@@ -504,24 +314,19 @@
         }
       }
     },
-    "SMS": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        },
-        "receiverId": {
-          "type": "string"
-        }
-      }
-    },
-    "Contact": {
+    "Location": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string"
         },
-        "phone": {
+        "females": {
+          "type": "number"
+        },
+        "males": {
+          "type": "number"
+        },
+        "parentLocation": {
           "type": "string"
         }
       }
