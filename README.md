@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/DennisWanjiru/population-api.svg?style=svg)](https://circleci.com/gh/DennisWanjiru/population-api)
+
 ## Population MANAGEMENT API
 - An Population management Api implemented using Nodejs/Expressjs and MongoDB
 
