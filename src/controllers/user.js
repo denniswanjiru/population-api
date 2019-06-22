@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
 
 import User from '../models/user';
-import Utils from "../helper/utils.mjs";
+import Utils from "../helper/utils";
 
 export default class UserController {
   static async signup(req, res) {
@@ -46,7 +46,7 @@ export default class UserController {
         userId: user[0]._id,
         role: user[0].role,
       },
-        process.env.JWT_SECRET_KEY,
+        process.env.JWT_SECRET_KEY || 'fwvbschvr32efvfrv',
         { expiresIn: "1h" }
       );
 

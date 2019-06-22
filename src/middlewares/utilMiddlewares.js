@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import Utils from "../helper/utils.mjs";
+import Utils from "../helper/utils";
 
 export default class UtilMiddleware {
   static async authenticate(req, res, next) {

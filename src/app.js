@@ -9,10 +9,12 @@ import swaggerDocument from './swagger.json';
 import LocationsRouter from './routes/locations';
 import ErrorHandler from './middlewares/error';
 import UserRouter from './routes/user';
-import UtilMiddleware from './middlewares/utilMiddlewares.mjs';
+import UtilMiddleware from './middlewares/utilMiddlewares.js';
+
+const database = process.env.DATABASE_URL || 'mongodb+srv://creez:root@cluster0-w8dbn.mongodb.net/test?retryWrites=true&w=majority';
 
 const app = express();
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+mongoose.connect(database, { useNewUrlParser: true });
 
 // Middlewares
 app.use(cors());

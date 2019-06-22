@@ -1,5 +1,5 @@
 import Location from '../models/location';
-import Utils from "../helper/utils.mjs";
+import Utils from "../helper/utils";
 
 export default class LocationsController {
   static async getLocations(req, res) {
